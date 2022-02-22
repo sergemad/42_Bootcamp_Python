@@ -1,6 +1,6 @@
 import sys as sys
 
-class num:
+class Num:
 
     def __init__(self,number) -> None:
         if len(number) == 1: # check if there is only 1 parameter
@@ -22,7 +22,7 @@ class num:
 
 
 def main():
-    test = num(sys.argv[1:])
+    test = Num(sys.argv[1:])
     if hasattr(test, 'number'): # Check if there is an attribue number in test
         test.who()
 

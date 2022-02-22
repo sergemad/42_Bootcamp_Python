@@ -1,6 +1,6 @@
 import sys as sys
 
-class text:
+class Text:
 
     def __init__(self,text) -> None:   # Constructor of classe
         self.text = ''
@@ -37,7 +37,7 @@ class text:
         
 
 def main():
-    t = text(sys.argv[1:])
+    t = Text(sys.argv[1:])
     t.text_analyzer()
 
 main()
