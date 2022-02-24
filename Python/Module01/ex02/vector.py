@@ -1,5 +1,6 @@
 class Vector:
 
+    '''Manipulation of vector and operation on vectors'''
     def __init__(self, values = None) -> None:
         self.values : list[list] = []
         if isinstance(values,list):
