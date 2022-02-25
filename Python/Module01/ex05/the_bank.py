@@ -46,31 +46,40 @@ class Bank(object):
             @return   True if success, False if an error occured
         """
         # ... Your code  ...
-        origin_exist = False
-        for i,acc_origin in enumerate(self.accounts):
-            if acc_origin.name == origin:
-                origin_exist = True
-                break
-        
-        dest_exist = False
-        for j,acc_dest in enumerate(self.accounts):
-            if acc_dest.name == dest:
-                dest_exist = True
-                break
-        
-        if origin_exist == False:
-            print("ERROR : Origine acount does not exist")
-        
-        elif dest_exist == False:
-            print("ERROR : Destination acount does not exist")
-        
+        if amount < 0:
+            print("ERROR : The amount transfer must be superior than 0")
+            return False
+
         else:
-            if self.accounts[i].value > amount:
-                self.accounts[i].transfer(-1*amount)
-                self.accounts[j].transfer(amount)
+            origin_exist = False
+            for i,acc_origin in enumerate(self.accounts):
+                if acc_origin.name == origin:
+                    origin_exist = True
+                    break
+            
+            dest_exist = False
+            for j,acc_dest in enumerate(self.accounts):
+                if acc_dest.name == dest:
+                    dest_exist = True
+                    break
+            
+            if origin_exist == False:
+                print("ERROR : Origine acount does not exist")
+                return False
+            
+            elif dest_exist == False:
+                print("ERROR : Destination acount does not exist")
+                return False
             
             else:
-                print("You don't have this amount in your account")
+                if self.accounts[i].value > amount:
+                    self.accounts[i].transfer(-1*amount)
+                    self.accounts[j].transfer(amount)
+                    return True
+                
+                else:
+                    print("You don't have this amount in your account")
+                    return False
 
 
     def fix_account(self, name):
@@ -79,3 +88,4 @@ class Bank(object):
             @return  True if success, False if an error occured
         """
         # ... Your code  ...
+        
