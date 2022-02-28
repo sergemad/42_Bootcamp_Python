@@ -54,7 +54,7 @@ class Sos:
         else:
             print("ERROR")
 
-    def in_morse(self):
+    def in_morse(self)-> None:
         text_morse = ""
         for c in self.words:
             for m in self.morse:

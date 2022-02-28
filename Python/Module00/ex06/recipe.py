@@ -35,21 +35,27 @@ class cookbook:
             value = input()
             if value == "1":
                 self.add_recipe()
-                print("The action is done, please type another corresponding number of the menu (1 to 5).\nTo exit, enter 5.")
-
-                
+                print("The action is done, please type another", 
+                "corresponding number of the menu (1 to 5).\n",
+                "To exit, enter 5.")
+    
             elif value == "2":
                 self.delete_recipe()
-                print("The action is done, please type another corresponding number of the menu (1 to 5).\nTo exit, enter 5.")
-
+                print("The action is done, please type another", 
+                "corresponding number of the menu (1 to 5).\n",
+                "To exit, enter 5.")
 
             elif value == "3":
                 self.show_recipe()
-                print("The action is done, please type another corresponding number of the menu (1 to 5).\nTo exit, enter 5.")
+                print("The action is done, please type another", 
+                "corresponding number of the menu (1 to 5).\n",
+                "To exit, enter 5.")
 
             elif value == "4":
                 self.show_book()
-                print("The action is done, please type another corresponding number of the menu (1 to 5).\nTo exit, enter 5.")
+                print("The action is done, please type another", 
+                "corresponding number of the menu (1 to 5).\n",
+                "To exit, enter 5.")
 
 
             elif value == "5":
@@ -57,7 +63,8 @@ class cookbook:
                 print("Cookbook closed")
             
             else:
-                print("This option does not exist, please type the corresponding number.\nTo exit, enter 5.")
+                print("This option does not exist, please type", 
+                "the corresponding number.\nTo exit, enter 5.")
 
 
     def add_recipe(self):
