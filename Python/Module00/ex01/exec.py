@@ -2,11 +2,11 @@ import sys as sys
 
 class Reverse:
 
-    def __init__(self, words) -> None:
-       self.words = words # table of all words in the execution
+    def __init__(self, words= list):
+       self.words  = words # table of all words in the execution
        self.string = ''  #  The string to reverse
     
-       if len(self.words) > 1: # Concatanate all words when there is more than 1
+       if len(self.words) > 1: # Concatenate all words when there is more than 1
            for word in self.words:
                if self.string=='':
                    self.string = self.string + word 
@@ -29,7 +29,7 @@ class Reverse:
                 elif self.string[i-1].isupper(): # Detecte if the character is upper
                     temp = temp + self.string[i-1].lower()
                     i=i-1
-            else: # if the character is not alphabetic
+            else: 
                 temp = temp + self.string[i-1]
                 i=i-1
         

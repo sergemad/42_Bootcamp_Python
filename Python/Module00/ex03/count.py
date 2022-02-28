@@ -2,12 +2,12 @@ import sys as sys
 
 class Text:
 
-    def __init__(self,text) -> None:   # Constructor of classe
+    def __init__(self,text= str): 
         self.text = ''
 
         if len(text) == 1: 
             self.text = text[0]
-        elif len(text) == 0:  # If there is no parameter, make an input for user
+        elif len(text) == 0:  
             self.text = input()
         else:
             print('ERROR')
@@ -17,14 +17,14 @@ class Text:
             length = len(self.text)
             upper, lower, space, punctuation = 0,0,0,0
             for char in self.text:
-                if char.isalpha():  # test if the character is alphabetic 
-                    if char.islower(): # test if  the character is lower case
+                if char.isalpha():  
+                    if char.islower():
                         lower = lower + 1
                     else:
                         upper = upper + 1
-                elif char.isspace(): # check if the character is a space
+                elif char.isspace(): 
                     space = space + 1
-                elif char.isnumeric(): # Check if the character is numeric
+                elif char.isnumeric(): 
                     pass
                 else: 
                     punctuation = punctuation + 1
