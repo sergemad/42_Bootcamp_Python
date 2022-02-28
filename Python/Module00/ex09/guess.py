@@ -10,7 +10,7 @@ class guess_game:
             "Good luck!", sep="\n")
         self.guess_num()
 
-    def guess_num(self):
+    def guess_num(self)-> None:
         finded = False
         iteration = 0
         while finded == False:

@@ -1,6 +1,6 @@
 import sys as sys
 
-def Operations( num1= int, num2= int):
+def Operations(num1: int, num2: int)-> None:
     if int(num2) == 0:          
         print(
             "Sum         "+ str(num1 + num2) +"\n"+
@@ -18,7 +18,6 @@ def Operations( num1= int, num2= int):
             "Remainder   "+ str(num1 % num2) +"\n"
             )
         
-def main():
-    o = Operations(int(sys.argv[1]),int(sys.argv[2]))
+    return None
 
-main()
+Operations(int(sys.argv[1]),int(sys.argv[2]))
