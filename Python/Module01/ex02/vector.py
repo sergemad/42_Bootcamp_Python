@@ -28,7 +28,6 @@ class Vector:
                 elif condition == False:
                     print("ERROR : The shape of the list is not right")
                 
-
             else:
                 print("ERROR : You have to make a list of list")
             
@@ -112,8 +111,8 @@ class Vector:
         else:
             print("ERROR : substraction is only on vectors")
         
-    def __truediv__(self, a):
-        if isinstance(a,int) and a != 0:
+    def __truediv__(self, a: int):
+        if a != 0:
             results : list[list[float]] = []
             for i in range(0,self.shape[0]):
                 results.append([])

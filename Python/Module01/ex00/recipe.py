@@ -1,6 +1,6 @@
 class Recipe:
 
-    def __init__(self,name, lvl, time, ing, desc, type) -> None:
+    def __init__(self,name: str, lvl: int, time: int, ing: list[str], desc: str, type: str) -> None:
         # initialisation of all variable an error message if the parameter are not right
         if isinstance(name,str):
             self.name = name

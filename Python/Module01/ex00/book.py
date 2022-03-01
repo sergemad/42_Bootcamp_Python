@@ -3,7 +3,7 @@ from recipe import Recipe
 
 class Book:
 
-    def __init__(self,name) -> None:
+    def __init__(self,name: str) -> None:
         self.name = name
         self.creation = datetime.now()
         self.last_update = datetime.now()
@@ -37,7 +37,7 @@ class Book:
             "dessert" : [cake]
         }
     
-    def get_recipe_by_name(self, name):
+    def get_recipe_by_name(self, name: str) -> Recipe:
         """Print a recipe with the name `name` and return the instance"""
         for meal in self.recipes_list:
             for recpt in self.recipes_list[meal]:
@@ -50,7 +50,7 @@ class Book:
 
         
 
-    def get_recipes_by_types(self, recipe_type):
+    def get_recipes_by_types(self, recipe_type: str) -> list[str]:
         """Get all recipe names for a given recipe_type """ 
         for meal in self.recipes_list:
             if meal == recipe_type:
@@ -63,7 +63,7 @@ class Book:
         print ("The recipe type is not good, it must be between starter, lunch and dessert")
         return None
 
-    def add_recipe(self, recipe) -> None:
+    def add_recipe(self, recipe: Recipe) -> None:
         """Add a recipe to the book and update last_update""" 
         for meal in self.recipes_list:
             if meal == recipe.recipe_type:

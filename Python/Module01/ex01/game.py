@@ -1,6 +1,6 @@
 class GotCharacter:
 
-    def __init__(self, first_name, is_alive) -> None:
+    def __init__(self, first_name: str, is_alive: str) -> None:
         self.firs_name = first_name
         self.is_alive = is_alive
 

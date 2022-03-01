@@ -1,3 +1,6 @@
+from xmlrpc.client import Boolean
+
+
 class Account(object):
 
     ID_COUNT = 1
@@ -25,7 +28,7 @@ class Bank(object):
     def __init__(self):
         self.accounts = []
 
-    def add(self, new_account):
+    def add(self, new_account: Account)-> None:
         """ Add new_account in the Bank
             @new_account:  Account() new account to append
             @return   True if success, False if an error occured
@@ -38,7 +41,15 @@ class Bank(object):
         else:
             print("ERROR : The argument must be an account")
 
-    def transfer(self, origin, dest, amount):
+    def account_verif(self,acc: Account)-> Boolean:
+        acc_exist = False
+        for i,acc_origin in enumerate(self.accounts):
+            if acc_origin.name == acc:
+                acc_exist = True
+                break
+        return acc_exist
+
+    def transfer(self, origin: Account, dest: Account, amount: int):
         """" Perform the fund transfer
             @origin:  str(name) of the first account
             @dest:    str(name) of the destination account
@@ -51,20 +62,12 @@ class Bank(object):
             return False
 
         else:
-            origin_exist = False
-            for i,acc_origin in enumerate(self.accounts):
-                if acc_origin.name == origin:
-                    origin_exist = True
-                    break
+            origin_exist = self.account_verif(origin)
             
-            dest_exist = False
-            for j,acc_dest in enumerate(self.accounts):
-                if acc_dest.name == dest:
-                    dest_exist = True
-                    break
+            dest_exist = self.account_verif(dest)
             
             if origin_exist == False:
-                print("ERROR : Origine acount does not exist")
+                print("ERROR : Origin acount does not exist")
                 return False
             
             elif dest_exist == False:
@@ -82,7 +85,7 @@ class Bank(object):
                     return False
 
 
-    def fix_account(self, name):
+    def fix_account(self, name:str):
         """ fix account associated to name if corrupted
             @name:   str(name) of the account
             @return  True if success, False if an error occured
