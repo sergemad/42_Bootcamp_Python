@@ -1,11 +1,8 @@
-from xmlrpc.client import Boolean
-
-
 class Account(object):
 
     ID_COUNT = 1
 
-    def __init__(self, name, **kwargs):
+    def __init__(self, name: str, **kwargs):
         self.__dict__.update(kwargs)
         
         self.id = self.ID_COUNT
@@ -19,7 +16,7 @@ class Account(object):
         if not isinstance(self.name, str):
           raise AttributeError("Attribute name must be a str object.")
     
-    def transfer(self, amount):
+    def transfer(self, amount: int) -> None:
         self.value += amount
 
 
@@ -41,15 +38,15 @@ class Bank(object):
         else:
             print("ERROR : The argument must be an account")
 
-    def account_verif(self,acc: Account)-> Boolean:
+    def account_verif(self,acc: Account):
         acc_exist = False
         for i,acc_origin in enumerate(self.accounts):
             if acc_origin.name == acc:
                 acc_exist = True
                 break
-        return acc_exist
+        return i,acc_exist
 
-    def transfer(self, origin: Account, dest: Account, amount: int):
+    def transfer(self, origin: Account, dest: Account, amount: int)-> None:
         """" Perform the fund transfer
             @origin:  str(name) of the first account
             @dest:    str(name) of the destination account
@@ -62,9 +59,9 @@ class Bank(object):
             return False
 
         else:
-            origin_exist = self.account_verif(origin)
+            i,origin_exist = self.account_verif(origin)
             
-            dest_exist = self.account_verif(dest)
+            j,dest_exist = self.account_verif(dest)
             
             if origin_exist == False:
                 print("ERROR : Origin acount does not exist")
