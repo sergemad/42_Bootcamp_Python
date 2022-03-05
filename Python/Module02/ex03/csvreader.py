@@ -4,7 +4,12 @@ class CsvReader():
         skip_top: int =0, skip_bottom: int =0 
         ) -> None:
 
-        self.file = open(filename, 'r')
+        try:
+            self.file = open(filename, 'r')
+        except FileNotFoundError:
+            print("File not found. Check the path of your file.")
+            return None
+        
         self.columns : list[str] = []
         self.data : list[list] = []
         self.header = header
@@ -13,7 +18,7 @@ class CsvReader():
 
         for i,line in enumerate(self.file):
             if i == 0:
-                for word in line.split(sep):
+                for nb_col,word in enumerate(line.split(sep)):
                     if header == True:
                         self.columns.append(word.replace("\n",""))
                         self.data.append([])
@@ -22,7 +27,11 @@ class CsvReader():
                 
             else:
                 for j,word in enumerate(line.split(sep)):
-                    self.data[j].append(word.replace("\n",""))
+                    if j <= nb_col:
+                        self.data[j].append(word.replace("\n",""))
+                    else:
+                        print(f"The file is corrupted at line {i}")
+                        return None
         
         self.skip()
 
@@ -42,6 +51,12 @@ class CsvReader():
             for i in range(0,len(self.data)):
                 del self.data[i][len(self.data[i]) - 1]
             self.skip_bottom = self.skip_bottom - 1
+        
+    def __enter__(self):
+        return self
+    
+    def __exit__(self) -> None:
+        self.file.close()
 
 T = CsvReader("test.csv",header=True,skip_top=1,skip_bottom=1)
 print(T.getData(),T.getHeader())
