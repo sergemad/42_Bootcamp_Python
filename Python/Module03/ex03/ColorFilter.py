@@ -30,7 +30,8 @@ class ColorFilter:
         im_red = im_red - self.to_green(array)
         return im_red
     
-    def to_celluloid(self, array : np) :
+    def to_celluloid(self, array : np) -> np:
+        #todo
         pass
 
     def to_grayscale(self, array : np , filter : Filter )-> np:
@@ -50,8 +51,7 @@ class ColorFilter:
                         )
                     ])
         gray_im = np.array(gray_im)
-        plt.imshow(gray_im)
-        plt.show()
+        return gray_im
 
 test = ImageProcessor()
 arr = test.load("test.jpg")
