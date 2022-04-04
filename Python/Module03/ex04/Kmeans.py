@@ -34,6 +34,9 @@ class KmeansClustering:
         print(self.centroids)
         dis_clu : list = []
         for iter in range(0,self.max_iter):
+            self.cluster.clear()
+            for c in range(0,self.ncentroid):
+                self.cluster.append([])
             for m in range(0,X.shape[0]):
                 for num_centr in range(0,self.ncentroid):
                     dis_clu.append(round(
@@ -42,7 +45,7 @@ class KmeansClustering:
                         ), 2)
                     )
                 min_index = np.argmin(np.array(dis_clu))
-                self.cluster[min_index].append(dis_clu[min_index])
+                self.cluster[min_index].append(X[m])
                 dis_clu = []
                 new_centroids = []
             for ctr in range(0,self.ncentroid):
@@ -53,6 +56,8 @@ class KmeansClustering:
             #else:
             self.centroids = new_centroids
             print(self.centroids)
+            print(self.cluster)
+            print("_____________________________")
 
                 
 
@@ -67,6 +72,6 @@ class KmeansClustering:
         This function should not raise any Exception.
         """
 
-X = np.array([[0,1],[2,3],[0.5,3],[3,0],[5,2]])
+X = np.array([[0,1],[2,3],[0.5,3],[3,7],[8,2]])
 test = KmeansClustering(ncentroid=2)
 test.fit(X)
