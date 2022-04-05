@@ -1,6 +1,7 @@
 from math import sqrt
 from random import randint
 import numpy as np
+import pandas as pd
 
 
 class KmeansClustering:
@@ -55,9 +56,11 @@ class KmeansClustering:
             #    break
             #else:
             self.centroids = new_centroids
-            print(self.centroids)
-            print(self.cluster)
-            print("_____________________________")
+            #print(self.centroids)
+            #print(self.cluster)
+            #print("_____________________________")
+        print(self.centroids)
+        print(self.cluster)
 
                 
 
@@ -71,7 +74,26 @@ class KmeansClustering:
         Raises:
         This function should not raise any Exception.
         """
+        self.cluster.clear()
+        dis_clu : list = []
+        for m in range(0,X.shape[0]):
+            for num_centr in range(0,self.ncentroid):
+                dis_clu.append(round(
+                    np.linalg.norm(
+                        np.array(self.centroids[num_centr]) - X[m]
+                    ), 2)
+                )
+            min_index = np.argmin(np.array(dis_clu))
+            self.cluster.append(min_index)
+            dis_clu = []
+        print(self.cluster)
 
-X = np.array([[0,1],[2,3],[0.5,3],[3,7],[8,2]])
-test = KmeansClustering(ncentroid=2)
-test.fit(X)
+X = np.array([[0,1,2],[2,3,7],[0.5,3,5],[3,7,1],[8,2,2]])
+SSC = pd.read_csv('solarsystemcensus.csv')
+SSC = np.array(SSC)
+SSC = np.delete(SSC, 0, axis=1)
+
+test = KmeansClustering(ncentroid=4)
+test.fit(SSC)
+#test.predict(np.array([[0,1,2]]))
+#
