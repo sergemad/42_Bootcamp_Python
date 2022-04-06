@@ -27,13 +27,14 @@ class KmeansClustering:
         for i in range(0,self.ncentroid):
             self.centroids.append([])
             new_centroids.append([])
-            self.cluster.append([])
             for j in range(0,X.shape[1]):
                 self.centroids[i].append(
                     randint(int(X.min()),int(X.max()))
                 )
+
         print(self.centroids)
         dis_clu : list = []
+
         for iter in range(0,self.max_iter):
             self.cluster.clear()
             for c in range(0,self.ncentroid):
@@ -50,17 +51,25 @@ class KmeansClustering:
                 dis_clu = []
                 new_centroids = []
             for ctr in range(0,self.ncentroid):
-                new_centroids.append(np.mean(np.array(self.cluster[ctr]), axis=0))
+                if self.cluster[ctr] == []:
+                    new_centroids.append([])
+                    for j in range(0,X.shape[1]):
+                        new_centroids[ctr].append(
+                            randint(int(X.min()),int(X.max()))
+                        )
+                else:
+                    new_centroids.append(np.mean(np.array(self.cluster[ctr]), axis=0))
+
             #if (np.array(new_centroids) == np.array(self.centroids)).all():
             #    print(new_centroids)
             #    break
             #else:
             self.centroids = new_centroids
-            #print(self.centroids)
-            #print(self.cluster)
-            #print("_____________________________")
-        print(self.centroids)
-        print(self.cluster)
+            print(self.centroids)
+            print(self.cluster)
+            print("_____________________________")
+        #print(self.centroids)
+        #print(self.cluster)
 
                 
 
@@ -96,4 +105,4 @@ SSC = np.delete(SSC, 0, axis=1)
 test = KmeansClustering(ncentroid=4)
 test.fit(SSC)
 #test.predict(np.array([[0,1,2]]))
-#
+#Problème avec mes centroid
